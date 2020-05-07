@@ -9,26 +9,31 @@
         state: present
         regexp: 'disable_overscan'
         line: 'disable_overscan=1'
+
     - name: Enable hdmi force hotplug
       lineinfile:
         path: /boot/config.txt
         state: present
         regexp: 'hdmi_force_hotplug'
         line: 'hdmi_force_hotplug=1'
+
     - name: Install git
       apt:
         name: git
         state: present
+
     - name: Install pexpect
       apt:
         name: python-pexpect
         state: present
+
 - name: Download the RetroPie-Setup script
   hosts: retropie
   become_user: pi
   tasks:
     - name: Clone the RetroPie setup git repo
       git: repo=https://github.com/RetroPie/RetroPie-Setup.git depth=1 dest=/home/pi/RetroPie-Setup
+
 - name: Install RetroPie
   hosts: retropie
   tasks:
