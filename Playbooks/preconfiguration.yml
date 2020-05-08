@@ -1,7 +1,8 @@
 ---
-- name: Setup the Raspberry Pi as root
+- name: Setup the Raspberry Pi for RetroPie install
   hosts: retropie
   become: yes
+
   tasks:
     - name: Update and upgrade apt packages
       apt:
@@ -30,4 +31,7 @@
     - name: Download the RetroPie-Setup script
       become_user: pi
       git: repo=https://github.com/RetroPie/RetroPie-Setup.git depth=1 dest=/home/pi/RetroPie-Setup
+
+    - name: Reboot
+      reboot:
 ...                                            
