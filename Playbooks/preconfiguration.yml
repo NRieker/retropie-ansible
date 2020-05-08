@@ -3,6 +3,11 @@
   hosts: retropie
   become: yes
   tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+
     - name: Disable overscan
       lineinfile:
         path: /boot/config.txt
@@ -22,24 +27,7 @@
         name: git
         state: present
 
-    - name: Install pexpect
-      apt:
-        name: python-pexpect
-        state: present
-
-- name: Download the RetroPie-Setup script
-  hosts: retropie
-  become_user: pi
-  tasks:
-    - name: Clone the RetroPie setup git repo
+    - name: Download the RetroPie-Setup script
+      become_user: pi
       git: repo=https://github.com/RetroPie/RetroPie-Setup.git depth=1 dest=/home/pi/RetroPie-Setup
-
-- name: Install RetroPie
-  hosts: retropie
-  tasks:
-    - name: Start RetroPie Setup script
-      expect:
-        command: sudo /home/pi/RetroPie-Setup/retropie_setup.sh
-        responses:
-          OK: ""
 ...                                            
