@@ -32,6 +32,7 @@
       become_user: pi
       git: repo=https://github.com/RetroPie/RetroPie-Setup.git depth=1 dest=/home/pi/RetroPie-Setup
 
-    - name: Reboot
-      reboot:
+    - name: Download the retropie-automation artifacts
+      become_user: pi
+      git: repo=https://github.com/NRieker/retropie-automation.git depth=1 dest=/home/pi/retropie-automation
 ...                                            
