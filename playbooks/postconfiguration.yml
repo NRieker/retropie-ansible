@@ -1,0 +1,17 @@
+---
+- name: Configure the Raspberry Pi after RetroPie install
+  hosts: retropie
+  
+  tasks:
+    - name: Copy RetroArch joypad configurations
+      copy:
+        src: /home/pi/retropie-automation/joypads/autoconfig/
+        dest: /opt/retropie/configs/all/retroarch/autoconfig/
+        force: yes
+
+    - name: Copy Mupen64Plus joypad configurations
+      copy:
+        src: /home/pi/retropie-automation/joypads/mupen64plus/InputAutoCfg.ini
+        dest: /opt/retropie/configs/n64/InputAutoCfg.ini
+        force: yes
+...
