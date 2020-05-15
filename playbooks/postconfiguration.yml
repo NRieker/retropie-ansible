@@ -14,4 +14,10 @@
         src: /home/pi/retropie-automation/joypads/mupen64plus/InputAutoCfg.ini
         dest: /opt/retropie/configs/n64/InputAutoCfg.ini
         force: yes
+
+    - name: Copy Emulationstation joypad configurations
+      copy:
+        src: /home/pi/retropie-automation/joypads/emulationstation/es_input.cfg
+        dest: /opt/retropie/configs/all/emulationstation/es_input.cfg
+        force: yes
 ...
