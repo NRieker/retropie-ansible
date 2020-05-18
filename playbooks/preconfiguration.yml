@@ -40,7 +40,7 @@
         state: present
         force_apt_get: yes
 
-    - name: Install latest rclone client
+    - name: Install the latest rclone client
       command:
         cmd: curl https://rclone.org/install.sh | sudo bash
         warn: no
