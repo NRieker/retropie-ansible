@@ -1,15 +1,17 @@
 ---
 - name: Setup the Raspberry Pi for RetroPie install
   hosts: retropie
-  become: yes
 
   tasks:
     - name: Update and upgrade apt packages
+      become: yes
       apt:
         upgrade: yes
         update_cache: yes
+        force_apt_get: yes
 
     - name: Disable overscan
+      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -17,6 +19,7 @@
         line: 'disable_overscan=1'
 
     - name: Enable hdmi force hotplug
+      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -24,6 +27,7 @@
         line: 'hdmi_force_hotplug=1'
 
     - name: Set GPU memory to 128 MB
+      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -34,9 +38,14 @@
       apt:
         name: git
         state: present
+        force_apt_get: yes
+
+    - name: Install latest rclone client
+      command:
+        cmd: curl https://rclone.org/install.sh | sudo bash
+        warn: no
 
     - name: Download the RetroPie-Setup script
-      become_user: pi
       git:
         repo: 'https://github.com/RetroPie/RetroPie-Setup.git'
         depth: 1
@@ -44,7 +53,6 @@
         force: yes
 
     - name: Download the retropie-automation artifacts
-      become_user: pi
       git:
         repo: 'https://github.com/NRieker/retropie-automation.git'
         depth: 1

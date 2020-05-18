@@ -20,4 +20,5 @@
         src: /home/pi/retropie-automation/joypads/emulationstation/es_input.cfg
         dest: /opt/retropie/configs/all/emulationstation/es_input.cfg
         force: yes
+
 ...
