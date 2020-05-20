@@ -1,6 +1,6 @@
 ---
 - name: Setup the Raspberry Pi for RetroPie install
-  hosts: retropie
+  hosts: all
 
   tasks:
     - name: Update and upgrade apt packages
