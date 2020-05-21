@@ -1,6 +1,6 @@
 ---
 - name: Setup the Raspberry Pi for RetroPie install
-  hosts: retropie
+  hosts: all
 
   tasks:
     - name: Update and upgrade apt packages
@@ -35,6 +35,7 @@
         line: 'gpu_mem=128'
 
     - name: Install git
+      become: yes
       apt:
         name: git
         state: present
