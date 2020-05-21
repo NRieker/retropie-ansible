@@ -35,6 +35,7 @@
         line: 'gpu_mem=128'
 
     - name: Install git
+      become: yes
       apt:
         name: git
         state: present
