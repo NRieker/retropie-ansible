@@ -33,6 +33,25 @@
         state: present
         regexp: 'gpu_mem'
         line: 'gpu_mem=128'
+      
+    - name: Ensure autologin.conf is present
+      become: yes
+      file:
+        path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
+        owner: root
+        group: root
+        mode: '0644'
+        state: touch
+        
+    - name: Enable autologin
+      become: yes
+      blockinfile:
+        path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
+        state: present
+        block: |
+          [Service]
+          ExecStart=
+          ExecStart=-/sbin/agetty --autologin pi --noclear %I $TERM
 
     - name: Install git
       become: yes
@@ -41,22 +60,17 @@
         state: present
         force_apt_get: yes
 
-    - name: Install the latest rclone client
-      command:
-        cmd: curl https://rclone.org/install.sh | sudo bash
-        warn: no
+    - name: Install rclone
+      become: yes
+      apt:
+        name: rclone
+        state: present
+        force_apt_get: yes
 
     - name: Download the RetroPie-Setup script
       git:
         repo: 'https://github.com/RetroPie/RetroPie-Setup.git'
         depth: 1
         dest: /home/pi/RetroPie-Setup
-        force: yes
-
-    - name: Download the retropie-automation artifacts
-      git:
-        repo: 'https://github.com/NRieker/retropie-automation.git'
-        depth: 1
-        dest: /home/pi/retropie-automation
         force: yes
 ...                                            

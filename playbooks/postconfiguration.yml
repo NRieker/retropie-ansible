@@ -3,6 +3,13 @@
   hosts: retropie
   
   tasks:
+    - name: Download the retropie-automation artifacts
+      git:
+        repo: 'https://github.com/NRieker/retropie-automation.git'
+        depth: 1
+        dest: /home/pi/retropie-automation
+        force: yes
+  
     - name: Copy RetroArch joypad configurations
       copy:
         src: /home/pi/retropie-automation/joypads/autoconfig/
