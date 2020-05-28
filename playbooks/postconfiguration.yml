@@ -5,9 +5,9 @@
   tasks:
     - name: Download the retropie-automation artifacts
       git:
-        repo: 'https://github.com/NRieker/retropie-automation.git'
+        repo: 'https://github.com/NRieker/retropie-ansible.git'
         depth: 1
-        dest: /home/pi/retropie-automation
+        dest: /home/pi/retropie-ansible
         force: yes
   
     - name: Copy RetroArch joypad configurations
