@@ -67,7 +67,7 @@
         state: present
         force_apt_get: yes
 
-    - name: Download the RetroPie-Setup script
+    - name: Download the latest RetroPie-Setup script
       git:
         repo: 'https://github.com/RetroPie/RetroPie-Setup.git'
         depth: 1
