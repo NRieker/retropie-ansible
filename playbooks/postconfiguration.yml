@@ -12,35 +12,35 @@
   
     - name: Copy RetroArch joypad configurations
       copy:
-        src: /home/pi/retropie-automation/joypads/autoconfig/
+        src: /home/pi/retropie-ansible/joypads/autoconfig/
         dest: /opt/retropie/configs/all/retroarch/autoconfig/
         force: yes
         mode: '0755'
 
     - name: Copy Mupen64Plus joypad configurations
       copy:
-        src: /home/pi/retropie-automation/joypads/mupen64plus/InputAutoCfg.ini
+        src: /home/pi/retropie-ansible/joypads/mupen64plus/InputAutoCfg.ini
         dest: /opt/retropie/configs/n64/InputAutoCfg.ini
         force: yes
         mode: '0755'
 
     - name: Copy Emulationstation joypad configurations
       copy:
-        src: /home/pi/retropie-automation/joypads/emulationstation/es_input.cfg
+        src: /home/pi/retropie-ansible/joypads/emulationstation/es_input.cfg
         dest: /opt/retropie/configs/all/emulationstation/es_input.cfg
         force: yes
         mode: '0755'
 
     - name: Copy cloud backup runcommand-onend script
       copy:
-        src: /home/pi/retropie-automation/scripts/runcommand-onend.sh
+        src: /home/pi/retropie-ansible/scripts/runcommand-onend.sh
         dest: /opt/retropie/configs/all/runcommand-onend.sh
         force: yes
         mode: '0755'
 
     - name: Copy cloud restore runcommand-menu custom script
       copy:
-        src: /home/pi/retropie-automation/scripts/savestaterestore.sh
+        src: /home/pi/retropie-ansible/scripts/savestaterestore.sh
         dest: /opt/retropie/configs/all/runcommand-menu/
         force: yes
         mode: '0755'
