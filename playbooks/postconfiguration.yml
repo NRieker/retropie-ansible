@@ -40,8 +40,36 @@
 
     - name: Copy cloud restore runcommand-menu custom script
       copy:
-        src: /home/pi/retropie-ansible/scripts/savestaterestore.sh
+        src: /home/pi/retropie-ansible/scripts/save_file_force_restore.sh
         dest: /opt/retropie/configs/all/runcommand-menu/
         force: yes
         mode: '0755'
+        
+    - name: Add cloud restore auto script to rc.local
+      become: yes
+      lineinfile:
+        path: /etc/rc.local
+        state: present
+        insertbefore: '^exit 0'
+        line: /home/pi/retropie-ansible/scripts/save_file_auto_restore.sh
+        
+    - name: Create saves directory
+      file:
+        path: /home/pi/RetroPie/saves
+        state: directory
+        mode: '0755'
+        
+    - name: Change save file directory
+      lineinfile:
+        path: /opt/retropie/configs/all/retroarch.cfg
+        state: present
+        regexp: 'savefile_directory'
+        line: 'savefile_directory = "/home/pi/RetroPie/saves"'
+        
+    - name: Change save state directory
+      lineinfile:
+        path: /opt/retropie/configs/all/retroarch.cfg
+        state: present
+        regexp: 'savestate_directory'
+        line: 'savestate_directory = "/home/pi/RetroPie/saves"'
 ...
