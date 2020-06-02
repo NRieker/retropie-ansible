@@ -1,2 +1,2 @@
 #!/bin/bash
-rclone -q --include "*.{sra,srm,state,eep}" copy /home/pi/RetroPie/roms/ gdrive:retropie_saves/
+rclone -q -u copy /home/pi/RetroPie/saves/ gdrive:saves/
