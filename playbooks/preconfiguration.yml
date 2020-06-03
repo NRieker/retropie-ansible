@@ -33,21 +33,15 @@
         state: present
         regexp: 'gpu_mem'
         line: 'gpu_mem=128'
-      
-    - name: Ensure autologin.conf is present
-      become: yes
-      file:
-        path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
-        owner: root
-        group: root
-        mode: '0644'
-        state: touch
-        
+
     - name: Enable autologin
       become: yes
       blockinfile:
         path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
         state: present
+        create: yes
+        owner: root
+        mode: '0644'
         block: |
           [Service]
           ExecStart=
