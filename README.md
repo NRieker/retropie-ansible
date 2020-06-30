@@ -42,8 +42,8 @@ There are numerous ways to implement cloud saves for RetroPie setups. I decided 
 
 #### Setup
 
-On your Raspberry Pi run ``rclone config`` and follow the setup instruction in the [Rclone docs](https://rclone.org/drive/). Name your new rclone remote ``gdrive`` and create a folder in your Google Drive named ``saves`` to ensure compatibility with the cloud save scripts.
+On your Raspberry Pi run ``rclone config`` and follow the setup instruction in the [Rclone docs](https://rclone.org/drive/). Name your new rclone remote ``gdrive`` and create two folders in your Google Drive named ``saves`` and ``states`` to ensure compatibility with the cloud save scripts.
 
 #### Usage
 
-Upon each boot Rclone will call the [Rclone copy](https://rclone.org/commands/rclone_copy/) command to copy your cloud saves to your Raspberry Pi. Upon exiting an emulator the cloud save script  against the ROM directories, filtering for only save and state files. To recover cloud saves on the same or another RetroPie system, simply run the ``savestaterestore.sh`` script from the RetroPie Runcommand User Menu. This method was chosen versus automatically recovering during boot to prevent overwriting any local saves that have not yet been backed up.
+During every boot the cloud restore script (``save_file_auto_restore.sh``) uses the [Rclone copy](https://rclone.org/commands/rclone_copy/) command to copy your cloud saves to your Raspberry Pi, ignoring any cloud saves that are older than local saves. Upon exiting an emulator the cloud save script (``runcommand-onend.sh``) runs against the saves and states directories. To force a restore of cloud saves on the Raspberry Pi even if local saves are newer, run the ``save_file_force_restore.sh`` script from the RetroPie Runcommand User Menu.
