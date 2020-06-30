@@ -38,7 +38,7 @@
         force: yes
         mode: '0755'
 
-    - name: Copy cloud save forece restore script to runcommand-menu
+    - name: Copy cloud save force restore script to runcommand-menu
       copy:
         src: /home/pi/retropie-ansible/scripts/save_file_force_restore.sh
         dest: /opt/retropie/configs/all/runcommand-menu/
