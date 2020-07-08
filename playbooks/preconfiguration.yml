@@ -1,5 +1,5 @@
 ---
-- name: Setup the Raspberry Pi for RetroPie install
+- name: Setup Raspberry Pi's for RetroPie install
   hosts: all
 
   tasks:
@@ -51,13 +51,6 @@
       become: yes
       apt:
         name: git
-        state: present
-        force_apt_get: yes
-
-    - name: Install rclone
-      become: yes
-      apt:
-        name: rclone
         state: present
         force_apt_get: yes
 

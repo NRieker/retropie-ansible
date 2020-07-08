@@ -1,15 +1,22 @@
 ---
-- name: Configure the Raspberry Pi after RetroPie install
-  hosts: retropie
+- name: Configure Raspberry Pi's after RetroPie install
+  hosts: all
   
   tasks:
-    - name: Download the retropie-automation artifacts
+    - name: Download the retropie-ansible artifacts
       git:
         repo: 'https://github.com/NRieker/retropie-ansible.git'
         depth: 1
         dest: /home/pi/retropie-ansible
         force: yes
-  
+
+    - name: Install rclone
+      become: yes
+      apt:
+        name: rclone
+        state: present
+        force_apt_get: yes
+
     - name: Copy RetroArch joypad configurations
       copy:
         src: /home/pi/retropie-ansible/joypads/autoconfig/
