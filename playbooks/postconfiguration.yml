@@ -1,6 +1,6 @@
 ---
 - name: Configure Raspberry Pi's after RetroPie install
-  hosts: all
+  hosts: retropie
   
   tasks:
     - name: Download the retropie-ansible artifacts
