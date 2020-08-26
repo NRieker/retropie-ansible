@@ -1,6 +1,7 @@
 ---
-- name: Configure Raspberry Pi's after RetroPie install
-  hosts: retropie
+- name: Copy joypad configurations and cloud save scripts
+  hosts: retropie-ansible
+  remote_user: pi
   
   tasks:
     - name: Download the retropie-ansible artifacts
@@ -59,7 +60,11 @@
         state: present
         insertbefore: '^exit 0'
         line: '/bin/su -c "/home/pi/retropie-ansible/scripts/save_file_auto_restore.sh" pi'
-        
+    
+- name: Configure save and state directories
+  hosts: retropie-ansible
+  remote_user: pi
+
     - name: Create saves directory
       file:
         path: /home/pi/RetroPie/saves
