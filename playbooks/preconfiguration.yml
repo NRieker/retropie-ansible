@@ -1,17 +1,17 @@
 ---
-- name: Setup Raspberry Pi's for RetroPie install
-  hosts: retropie
+- name: Update packages and edit config.txt
+  hosts: retropieansible
+  remote_user: pi
+  become: yes
 
   tasks:
     - name: Update and upgrade apt packages
-      become: yes
       apt:
         upgrade: yes
         update_cache: yes
         force_apt_get: yes
 
     - name: Disable overscan
-      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -19,7 +19,6 @@
         line: 'disable_overscan=1'
 
     - name: Enable hdmi force hotplug
-      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -27,7 +26,6 @@
         line: 'hdmi_force_hotplug=1'
 
     - name: Set GPU memory to 128 MB
-      become: yes
       lineinfile:
         path: /boot/config.txt
         state: present
@@ -35,7 +33,6 @@
         line: 'gpu_mem=128'
 
     - name: Enable autologin
-      become: yes
       blockinfile:
         path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
         state: present
@@ -46,7 +43,12 @@
           [Service]
           ExecStart=
           ExecStart=-/sbin/agetty --autologin pi --noclear %I $TERM
+    
+- name: Prepare for RetroPie installation
+  hosts: retropieansible
+  remote_user: pi
 
+  tasks:
     - name: Install git
       become: yes
       apt:
@@ -60,4 +62,4 @@
         depth: 1
         dest: /home/pi/RetroPie-Setup
         force: yes
-...                                            
+...
