@@ -1,6 +1,6 @@
 ---
 - name: Update packages and edit config.txt
-  hosts: retropie-ansible
+  hosts: retropieansible
   remote_user: pi
   become: yes
 
@@ -45,9 +45,10 @@
           ExecStart=-/sbin/agetty --autologin pi --noclear %I $TERM
     
 - name: Prepare for RetroPie installation
-  hosts: retropie-ansible
+  hosts: retropieansible
   remote_user: pi
 
+  tasks:
     - name: Install git
       become: yes
       apt:

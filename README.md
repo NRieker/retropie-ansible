@@ -10,7 +10,7 @@ The [RetroPie](https://github.com/RetroPie) team has done an incredible job of c
 
 ## Usage
 
-This project assumes your Raspberry Pi's already exist within your ``/etc/ansible/hosts`` inventory file and are accessible via SSH.  By default the playbooks will run against a group named ``ansible-retropie``.  I've tested this primarily on Raspberry Pi 4's with Raspbian Lite and RetroPie 4.6, but this would likely work on other models and versions.
+This project assumes your Raspberry Pi's already exist within your ``/etc/ansible/hosts`` inventory file and are accessible via SSH.  By default the playbooks will run against a group named ``retropieansible``.  I've tested this primarily on Raspberry Pi 4's with Raspbian Lite and RetroPie 4.6, but this would likely work on other models and versions.
 
 1. Run the ``./playbooks/preconfiguration.yml`` playbook
 2. Install RetroPie and desired cores

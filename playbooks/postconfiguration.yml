@@ -1,6 +1,6 @@
 ---
 - name: Copy joypad configurations and cloud save scripts
-  hosts: retropie-ansible
+  hosts: retropieansible
   remote_user: pi
   
   tasks:
@@ -62,9 +62,10 @@
         line: '/bin/su -c "/home/pi/retropie-ansible/scripts/save_file_auto_restore.sh" pi'
     
 - name: Configure save and state directories
-  hosts: retropie-ansible
+  hosts: retropieansible
   remote_user: pi
 
+  tasks:
     - name: Create saves directory
       file:
         path: /home/pi/RetroPie/saves
